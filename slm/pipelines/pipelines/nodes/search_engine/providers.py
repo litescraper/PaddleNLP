@@ -12,6 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
 import json
 import logging
 from typing import Any, Dict, List, Optional, Union
@@ -168,7 +169,7 @@ class SerperDev(SearchEngine):
         """
         kwargs = {**self.kwargs, **kwargs}
         top_k = kwargs.pop("top_k", self.top_k)
-        url = "https://google.serper.dev/search"
+        url = f'{os.getenv("SERPER_BASE_URL", "https://google.serper.dev").rstrip("/")}/search'
 
         params = {"q": query, **kwargs}
 
